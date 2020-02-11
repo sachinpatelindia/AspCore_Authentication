@@ -21,12 +21,26 @@ namespace AspCoreAuthentication.Controllers
         {
             return View();
         }
+
+        [Authorize(Roles ="Admin")]
+        public IActionResult SecretRole()
+        {
+            return View("secret");
+        }
+
+        [Authorize(Policy ="claim.dob")]
+        public IActionResult SecretPolicy()
+        {
+            return View("secret");
+        }
         public IActionResult Authenticate()
         {
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name,"Sachin"),
                 new Claim(ClaimTypes.Email,"sachin@abc.com"),
+                new Claim(ClaimTypes.DateOfBirth,"11/11/2000"),
+                 new Claim(ClaimTypes.Role,"Admin"),
                 new Claim("My.Love","Sachin"),
             };
 
