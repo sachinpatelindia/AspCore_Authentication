@@ -1,15 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using AspCoreAuthentication.AuthorizationRequirements;
+using AspCoreAuthentication.Controllers;
+using AspCoreAuthentication.CustomPolicyProvider;
+using AspCoreAuthentication.Transformer;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Security.Claims;
 
 namespace AspCoreAuthentication
 {
@@ -44,7 +43,21 @@ namespace AspCoreAuthentication
                     policyBuilder.AddRequirements(new CustomRequireClaim(ClaimTypes.DateOfBirth));
                 });
             });
+
+            services.AddSingleton<IAuthorizationPolicyProvider, CustomAuthorizatonPolicyProvider>();
+            services.AddScoped<IAuthorizationHandler, SecurityLevelHandler>();
             services.AddScoped<IAuthorizationHandler, CustomRequireHandler>();
+            services.AddScoped<IAuthorizationHandler, CookieJarAuthorizationHandler>();
+            services.AddScoped<IClaimsTransformation, ClaimsTransformer>();
+
+            services.AddControllersWithViews(config=>
+            {
+                var authBuilder=new AuthorizationPolicyBuilder();
+                var defaultAuthPolicy = authBuilder
+                .RequireAuthenticatedUser()
+                .Build();
+                //config.Filters.Add(new AuthorizeFilter(defaultAuthPolicy));
+            });
             services.AddControllersWithViews();
         }
 

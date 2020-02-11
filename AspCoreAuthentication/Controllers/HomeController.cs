@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using AspCoreAuthentication.CustomPolicyProvider;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace AspCoreAuthentication.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IAuthorizationService _authorizationService;
+
+        public HomeController(IAuthorizationService authorizationService)
+        {
+            _authorizationService = authorizationService;
+        }
         public IActionResult Index()
         {
             return View();
@@ -22,17 +27,36 @@ namespace AspCoreAuthentication.Controllers
             return View();
         }
 
+        public async Task<IActionResult> DoStuff([FromServices]IAuthorizationService service)
+        {
+            var builder = new AuthorizationPolicyBuilder("Schema");
+            var customPolicy = builder.RequireClaim("Hello").Build();
+            var result =await _authorizationService.AuthorizeAsync(HttpContext.User, customPolicy);
+            if(result.Succeeded)
+            {
+                return View("Index");
+            }
+            return View("Index");
+        }
+
         [Authorize(Roles ="Admin")]
         public IActionResult SecretRole()
         {
             return View("secret");
         }
 
-        [Authorize(Policy ="claim.dob")]
-        public IActionResult SecretPolicy()
+        [SecurityLevel(5)]
+        public IActionResult SecretLevel()
         {
             return View("secret");
         }
+
+        [SecurityLevel(10)]
+        public IActionResult SecretHighLevel()
+        {
+            return View("secret");
+        }
+        [AllowAnonymous]
         public IActionResult Authenticate()
         {
             var claims = new List<Claim>()
@@ -41,6 +65,7 @@ namespace AspCoreAuthentication.Controllers
                 new Claim(ClaimTypes.Email,"sachin@abc.com"),
                 new Claim(ClaimTypes.DateOfBirth,"11/11/2000"),
                  new Claim(ClaimTypes.Role,"Admin"),
+                      new Claim(DynamicPolycies.SecurityLevel,"7"),
                 new Claim("My.Love","Sachin"),
             };
 

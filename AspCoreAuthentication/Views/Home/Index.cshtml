@@ -2,6 +2,18 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService authorizationService
 <h1>Home Page</h1>
-
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>User is Authenticated</h1>
+}
+else
+{
+    <h1>User is not authenticated</h1>
+}
+@if((await authorizationService.AuthorizeAsync(User,"claim.dob")).Succeeded)
+{
+    <h1>User has dob claim</h1>
+}
