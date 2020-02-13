@@ -42,7 +42,7 @@ namespace AspCoreAuthentication.CustomPolicyProvider
         public static AuthorizationPolicy Create(string policyName)
         
         {
-            var parts = policyName.Split(',');
+            var parts = policyName.Split('.');
             var type = parts.First();
             var value = parts.Last();
             switch (type)
