@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspCoreAuthentication", "AspCoreAuthentication\AspCoreAuthentication.csproj", "{F90A942D-1171-42B1-A04C-D60EF7A139CD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Oauth", "Oauth", "{1B9EB74F-C43E-40DD-9CE4-EEECCC1ADB97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{D2C15D4E-AC50-4BAD-BED7-2B01190D98A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F90A942D-1171-42B1-A04C-D60EF7A139CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F90A942D-1171-42B1-A04C-D60EF7A139CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F90A942D-1171-42B1-A04C-D60EF7A139CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F90A942D-1171-42B1-A04C-D60EF7A139CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2C15D4E-AC50-4BAD-BED7-2B01190D98A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2C15D4E-AC50-4BAD-BED7-2B01190D98A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2C15D4E-AC50-4BAD-BED7-2B01190D98A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2C15D4E-AC50-4BAD-BED7-2B01190D98A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D2C15D4E-AC50-4BAD-BED7-2B01190D98A5} = {1B9EB74F-C43E-40DD-9CE4-EEECCC1ADB97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {74358196-8B08-45EC-B29B-987F59E9FA7F}
