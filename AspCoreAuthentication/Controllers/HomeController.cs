@@ -64,7 +64,8 @@ namespace AspCoreAuthentication.Controllers
                 new Claim(ClaimTypes.Name,"Sachin"),
                 new Claim(ClaimTypes.Email,"sachin@abc.com"),
                 new Claim(ClaimTypes.DateOfBirth,"11/11/2000"),
-                 new Claim(ClaimTypes.Role,"Admin"),
+                new Claim(ClaimTypes.Role,"Admin"),
+                 new Claim(ClaimTypes.Role,"Admin2"),
                       new Claim(DynamicPolycies.SecurityLevel,"10"),
                 new Claim("My.Love","Sachin"),
             };

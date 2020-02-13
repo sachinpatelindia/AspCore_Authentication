@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspCoreAuthentication", "AspCoreAuthentication\AspCoreAuthentication.csproj", "{F90A942D-1171-42B1-A04C-D60EF7A139CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspCoreAuthentication", "AspCoreAuthentication\AspCoreAuthentication.csproj", "{F90A942D-1171-42B1-A04C-D60EF7A139CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -59,6 +59,13 @@ namespace AspCoreAuthentication
                 .Build();
                // config.Filters.Add(new AuthorizeFilter(defaultAuthPolicy));
             });
+            services.AddRazorPages().AddRazorPagesOptions(config=>
+            {
+                config.Conventions.AuthorizePage("/Razor/Secured");
+                config.Conventions.AuthorizePage("/Razor/Policy","Admin");
+                config.Conventions.AuthorizeFolder("/RazorSecured");
+                config.Conventions.AllowAnonymousToPage("/RazorSecured/Anon");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,6 +83,7 @@ namespace AspCoreAuthentication
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
             });
         }
     }
