@@ -57,7 +57,7 @@ namespace AspCoreAuthentication
                 var defaultAuthPolicy = authBuilder
                 .RequireAuthenticatedUser()
                 .Build();
-                config.Filters.Add(new AuthorizeFilter(defaultAuthPolicy));
+               // config.Filters.Add(new AuthorizeFilter(defaultAuthPolicy));
             });
         }
 
